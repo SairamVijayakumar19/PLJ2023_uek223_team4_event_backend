@@ -30,7 +30,7 @@ public class EventController {
 
     @PostMapping
     public ResponseEntity<Event> createEvent(@RequestBody Event event) {
-        return ResponseEntity.ok(eventService.saveEvent(event));
+        return ResponseEntity.ok(eventService.createEvent(event));
     }
 
     @PutMapping("/{id}")

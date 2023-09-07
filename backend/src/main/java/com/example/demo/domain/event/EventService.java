@@ -24,7 +24,7 @@ public class EventService {
         return eventRepository.findById(id);
     }
 
-    public Event saveEvent(Event event) {
+    public Event createEvent(Event event) {
         return eventRepository.save(event);
     }
 
