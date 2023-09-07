@@ -1,16 +1,15 @@
 package com.example.demo.domain.event;
 
-import lombok.AllArgsConstructor;
+import com.example.demo.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import java.util.List;
 import java.util.Optional;
 
-@AllArgsConstructor
 @Service
 public class EventService {
 
@@ -32,4 +31,27 @@ public class EventService {
     public void deleteEvent(Integer id) {
         eventRepository.deleteById(id);
     }
+
+    public Event updateEvent(Integer id, Event event) {
+        if (eventRepository.existsById(id)) {
+            event.setId(id);
+            return eventRepository.save(event);
+        }
+        return null;
+    }
+
+    public Page<User> getEventParticipants(Integer eventId, Pageable pageable) {
+        Optional<Event> eventOptional = eventRepository.findById(eventId);
+        if (eventOptional.isPresent()) {
+            List<User> guestList = eventOptional.get().getGuestList();
+            int start = (int) pageable.getOffset();
+            int end = Math.min((start + pageable.getPageSize()), guestList.size());
+            List<User> subList = guestList.subList(start, end);
+
+            return new PageImpl<>(subList, pageable, guestList.size());
+        }
+        return Page.empty();
+    }
+
+
 }

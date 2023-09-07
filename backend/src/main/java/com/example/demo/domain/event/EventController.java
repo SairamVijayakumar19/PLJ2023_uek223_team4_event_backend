@@ -1,16 +1,16 @@
 package com.example.demo.domain.event;
 
-import lombok.AllArgsConstructor;
+import com.example.demo.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@AllArgsConstructor
 @RestController
+@RequestMapping("/api/events")
 public class EventController {
 
     @Autowired
@@ -33,9 +33,23 @@ public class EventController {
         return ResponseEntity.ok(eventService.saveEvent(event));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Event> updateEvent(@PathVariable Integer id, @RequestBody Event event) {
+        Event updatedEvent = eventService.updateEvent(id, event);
+        if (updatedEvent != null) {
+            return ResponseEntity.ok(updatedEvent);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable Integer id) {
         eventService.deleteEvent(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/{id}/participants")
+    public ResponseEntity<Page<User>> getEventParticipants(@PathVariable Integer id, Pageable pageable) {
+        return ResponseEntity.ok(eventService.getEventParticipants(id, pageable));
     }
 }

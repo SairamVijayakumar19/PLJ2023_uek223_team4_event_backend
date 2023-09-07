@@ -2,10 +2,14 @@ package com.example.demo.domain.event;
 
 import com.example.demo.domain.user.User;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 public class Event {
 
@@ -21,7 +25,7 @@ public class Event {
     private String eventName;
 
     @Column
-    private Date date;
+    private String date;
 
     @Column
     private String location;
@@ -29,7 +33,7 @@ public class Event {
     public Event() {
     }
 
-    public Event(List<User> guestList, String eventName, Date date, String location) {
+    public Event(List<User> guestList, String eventName, String date, String location) {
         this.guestList = guestList;
         this.eventName = eventName;
         this.date = date;
