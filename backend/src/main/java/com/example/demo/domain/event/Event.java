@@ -16,10 +16,13 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(name = "event_id")
     private Integer id;
 
     @ManyToMany
+    @JoinTable(name = "event_users",
+            joinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"))
     private List<User> guestList;
 
     @Column
