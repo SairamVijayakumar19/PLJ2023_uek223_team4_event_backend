@@ -1,7 +1,7 @@
 package com.example.demo.domain.event;
 
 import com.example.demo.domain.event.dto.EventDTO;
-import com.example.demo.domain.event.dto.EventMapper;
+import com.example.demo.domain.event.dto.EventMapperTest;
 import com.example.demo.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,7 +21,7 @@ public class EventController {
     private EventService eventService;
 
     @Autowired
-    private EventMapper eventMapper;
+    private EventMapperTest eventMapper;
 
     @PreAuthorize("hasAuthority('EVENT_READ')")
     @GetMapping
