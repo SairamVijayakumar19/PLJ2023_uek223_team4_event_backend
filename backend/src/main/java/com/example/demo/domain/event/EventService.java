@@ -1,5 +1,7 @@
 package com.example.demo.domain.event;
 
+import com.example.demo.domain.event.dto.EventDTO;
+import com.example.demo.domain.event.dto.EventMapper;
 import com.example.demo.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -16,31 +20,40 @@ public class EventService {
     @Autowired
     private EventRepository eventRepository;
 
-    public List<Event> getAllEvents() {
-        return eventRepository.findAll();
+    @Autowired
+    private EventMapper eventMapper;
+
+    public List<EventDTO> getAllEvents() {
+        List<Event> events = eventRepository.findAll();
+        return eventMapper.toDTOs(events);
     }
 
-    public Optional<Event> getEventById(Integer id) {
-        return eventRepository.findById(id);
+    public Optional<EventDTO> getEventById(UUID id) {
+        Optional<Event> event = eventRepository.findById(id);
+        return event.map(eventMapper::toDTO);
     }
 
-    public Event createEvent(Event event) {
-        return eventRepository.save(event);
+    public EventDTO createEvent(EventDTO eventDTO) {
+        Event event = eventMapper.fromDTO(eventDTO);
+        event = eventRepository.save(event);
+        return eventMapper.toDTO(event);
     }
 
-    public void deleteEvent(Integer id) {
-        eventRepository.deleteById(id);
-    }
-
-    public Event updateEvent(Integer id, Event event) {
-        if (eventRepository.existsById(id)) {
+    public EventDTO updateEvent(UUID id, EventDTO eventDTO) {
+        if(eventRepository.existsById(id)) {
+            Event event = eventMapper.fromDTO(eventDTO);
             event.setId(id);
-            return eventRepository.save(event);
+            event = eventRepository.save(event);
+            return eventMapper.toDTO(event);
         }
         return null;
     }
 
-    public Page<User> getEventParticipants(Integer eventId, Pageable pageable) {
+    public void deleteEvent(UUID id) {
+        eventRepository.deleteById(id);
+    }
+
+    public Page<User> getEventParticipants(UUID eventId, Pageable pageable) {
         Optional<Event> eventOptional = eventRepository.findById(eventId);
         if (eventOptional.isPresent()) {
             List<User> guestList = eventOptional.get().getGuestList();

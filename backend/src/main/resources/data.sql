@@ -52,10 +52,10 @@ VALUES
     ('ab505c92-7280-49fd-a7de-258e618df074', '07e848fa-4d62-11ee-be56-0242ac120002')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO event (event_name, date, location)
-VALUES ('Summer Party', '2023-06-15', 'Beach Club'),
-       ('Tech Conference', '2023-07-20', 'Convention Center'),
-       ('New Year Bash', '2023-12-31', 'Downtown Plaza');
+INSERT INTO event (id ,event_name, date, location)
+VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','Summer Party', '2023-06-15', 'Beach Club'),
+       ('efb7b5ae-4e38-11ee-be56-0242ac120002' ,'Tech Conference', '2023-07-20', 'Convention Center'),
+       ('efb7b72a-4e38-11ee-be56-0242ac120002' ,'New Year Bash', '2023-12-31', 'Downtown Plaza');
 
 INSERT  INTO event_users(event_id, users_id)
-VALUES ('1','ba804cb9-fa14-42a5-afaf-be488742fc54');
+VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','ba804cb9-fa14-42a5-afaf-be488742fc54');

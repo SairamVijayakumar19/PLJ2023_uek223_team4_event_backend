@@ -1,27 +1,25 @@
 package com.example.demo.domain.event;
 
+import com.example.demo.core.generic.AbstractEntity;
 import com.example.demo.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.AbstractCollection;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
 @Table
-public class Event {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "event_id")
-    private Integer id;
+public class Event extends AbstractEntity {
 
     @ManyToMany
     @JoinTable(name = "event_users",
-            joinColumns = @JoinColumn(name = "event_id", referencedColumnName = "event_id"),
+            joinColumns = @JoinColumn(name = "event_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"))
     private List<User> guestList;
 
@@ -37,7 +35,8 @@ public class Event {
     public Event() {
     }
 
-    public Event(List<User> guestList, String eventName, String date, String location) {
+    public Event(UUID id , List<User> guestList, String eventName, String date, String location) {
+        super(id);
         this.guestList = guestList;
         this.eventName = eventName;
         this.date = date;
