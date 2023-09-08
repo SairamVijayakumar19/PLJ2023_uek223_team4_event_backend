@@ -5,6 +5,8 @@ import com.example.demo.domain.user.dto.UserMapper;
 import com.example.demo.domain.user.dto.UserRegisterDTO;
 import java.util.List;
 import java.util.UUID;
+
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,36 +36,44 @@ public class UserController {
     this.userMapper = userMapper;
   }
 
+  @Operation(summary = "Get user by ID", description = "Returns a specific user by its unique ID.")
   @GetMapping("/{id}")
   public ResponseEntity<UserDTO> retrieveById(@PathVariable UUID id) {
     User user = userService.findById(id);
     return new ResponseEntity<>(userMapper.toDTO(user), HttpStatus.OK);
   }
 
+  @Operation(summary = "Get all users", description = "Returns a list of all registered users.")
   @GetMapping({"", "/"})
   public ResponseEntity<List<UserDTO>> retrieveAll() {
     List<User> users = userService.findAll();
     return new ResponseEntity<>(userMapper.toDTOs(users), HttpStatus.OK);
   }
 
+  @Operation(summary = "Register a new user", description = "Registers and returns the newly created user.")
   @PostMapping("/register")
   public ResponseEntity<UserDTO> register(@Valid @RequestBody UserRegisterDTO userRegisterDTO) {
     User user = userService.register(userMapper.fromUserRegisterDTO(userRegisterDTO));
     return new ResponseEntity<>(userMapper.toDTO(user), HttpStatus.CREATED);
   }
+
+  @Operation(summary = "Register a user without password", description = "Registers (without password) and returns the newly created user.")
   @PostMapping("/registerUser")
   public ResponseEntity<UserDTO> registerWithoutPassword(@Valid @RequestBody UserDTO userDTO) {
     User user = userService.registerUser(userMapper.fromDTO(userDTO));
     return new ResponseEntity<>(userMapper.toDTO(user), HttpStatus.CREATED);
   }
+
+  @Operation(summary = "Update user by ID", description = "Updates and returns the modified user.")
   @PutMapping("/{id}")
   @PreAuthorize(
-      "hasAuthority('USER_MODIFY') && @userPermissionEvaluator.isUserAboveAge(authentication.principal.user,18)")
+          "hasAuthority('USER_MODIFY') && @userPermissionEvaluator.isUserAboveAge(authentication.principal.user,18)")
   public ResponseEntity<UserDTO> updateById(@PathVariable UUID id, @Valid @RequestBody UserDTO userDTO) {
     User user = userService.updateById(id, userMapper.fromDTO(userDTO));
     return new ResponseEntity<>(userMapper.toDTO(user), HttpStatus.OK);
   }
 
+  @Operation(summary = "Delete a user", description = "Deletes the user with the provided ID.")
   @DeleteMapping("/{id}")
   @PreAuthorize("hasAuthority('USER_DELETE')")
   public ResponseEntity<Void> deleteById(@PathVariable UUID id) {
