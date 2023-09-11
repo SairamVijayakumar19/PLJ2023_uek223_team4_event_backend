@@ -5,7 +5,7 @@ values ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'admin@example.com', 'James','Bo
 ('0d8fa44c-54fd-4cd0-ace9-2a7da57992de', 'user@example.com', 'Tyler','Durden', '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6') -- Password: 1234
  ON CONFLICT DO NOTHING;
 
-
+-- test
 --ROLES
 INSERT INTO role(id, name)
 VALUES ('d29e709c-0ff1-4f4c-a7ef-09f656c390f1', 'DEFAULT'),

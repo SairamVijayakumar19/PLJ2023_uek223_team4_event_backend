@@ -10,3 +10,4 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE,uses = UserMapper.class)
 public interface EventMapper extends AbstractMapper<Event, EventDTO> {
 }
+

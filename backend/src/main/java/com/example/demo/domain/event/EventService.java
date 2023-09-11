@@ -1,7 +1,7 @@
 package com.example.demo.domain.event;
 
 import com.example.demo.domain.event.dto.EventDTO;
-import com.example.demo.domain.event.dto.EventMapper;
+import com.example.demo.domain.event.dto.EventMapperTest;
 import com.example.demo.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -21,7 +20,7 @@ public class EventService {
     private EventRepository eventRepository;
 
     @Autowired
-    private EventMapper eventMapper;
+    private EventMapperTest eventMapper;
 
     public List<EventDTO> getAllEvents() {
         List<Event> events = eventRepository.findAll();

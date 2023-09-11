@@ -1,7 +1,7 @@
 package com.example.demo.domain.event;
 
 import com.example.demo.domain.event.dto.EventDTO;
-import com.example.demo.domain.event.dto.EventMapper;
+import com.example.demo.domain.event.dto.EventMapperTest;
 import com.example.demo.domain.user.User;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.log4j.Log4j2;
@@ -24,7 +24,7 @@ public class EventController {
     private EventService eventService;
 
     @Autowired
-    private EventMapper eventMapper;
+    private EventMapperTest eventMapper;
 
     @Operation(summary = "Retrieve all events", description = "Returns a list of all available events.")
     @PreAuthorize("hasAuthority('EVENT_READ')")
