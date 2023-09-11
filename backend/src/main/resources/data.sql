@@ -43,7 +43,9 @@ VALUES
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '6b30a896-4e37-11ee-be56-0242ac120002'),
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '6b30a440-4e37-11ee-be56-0242ac120002'),
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', 'efb7b108-4e38-11ee-be56-0242ac120002'),
-    ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '5b30a896-4e37-11ee-be56-0242ac120002')
+    ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '5b30a896-4e37-11ee-be56-0242ac120002'),
+    ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '07e85052-4d62-11ee-be56-0242ac120002'),
+    ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '07e851ba-4d62-11ee-be56-0242ac120002')
  ON CONFLICT DO NOTHING;
 
 -- ADMIN hat "EVENT_READ",
