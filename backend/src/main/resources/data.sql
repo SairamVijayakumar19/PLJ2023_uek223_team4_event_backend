@@ -65,7 +65,11 @@ VALUES
     --EVENT_READ_PARTICIPANTS
     ('ab505c92-7280-49fd-a7de-258e618df074', '6b30a896-4e37-11ee-be56-0242ac120002'),
     --EVENT_POST
-    ('ab505c92-7280-49fd-a7de-258e618df074', '07e848fa-4d62-11ee-be56-0242ac120002')
+    ('ab505c92-7280-49fd-a7de-258e618df074', '07e848fa-4d62-11ee-be56-0242ac120002'),
+    --USER_MODIFY
+    ('ab505c92-7280-49fd-a7de-258e618df074', '76d2cbf6-5845-470e-ad5f-2edb9e09a868'),
+    --USER DELETE
+    ('ab505c92-7280-49fd-a7de-258e618df074', '21c942db-a275-43f8-bdd6-d048c21bf5ab')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO event (id ,event_name, date, location)
