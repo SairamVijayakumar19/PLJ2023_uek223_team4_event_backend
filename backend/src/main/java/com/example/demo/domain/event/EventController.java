@@ -28,7 +28,7 @@ public class EventController {
 
     @Operation(summary = "Retrieve all events", description = "Returns a list of all available events.")
     @PreAuthorize("hasAuthority('EVENT_READ')")
-    @GetMapping
+    @GetMapping({"", "/"})
     public ResponseEntity<List<EventDTO>> getAllEvents() {
         return ResponseEntity.ok(eventService.getAllEvents());
     }
@@ -44,7 +44,7 @@ public class EventController {
 
     @Operation(summary = "Create a new event", description = "Creates and returns the newly created event.")
     @PreAuthorize("hasAuthority('EVENT_CREATE')")
-    @PostMapping
+    @PostMapping({"", "/"})
     public ResponseEntity<EventDTO> createEvent(@RequestBody EventDTO eventDTO) {
         return ResponseEntity.ok(eventService.createEvent(eventDTO));
     }
