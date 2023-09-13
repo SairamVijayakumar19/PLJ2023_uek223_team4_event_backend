@@ -2,7 +2,10 @@
 --USERS
 insert into users (id, email,first_name,last_name, password)
 values ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'admin@example.com', 'James','Bond', '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6' ), -- Password: 1234
-('0d8fa44c-54fd-4cd0-ace9-2a7da57992de', 'user@example.com', 'Tyler','Durden', '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6') -- Password: 1234
+('0d8fa44c-54fd-4cd0-ace9-2a7da57992de', 'user@example.com', 'Tyler','Durden', '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6'),-- Password: 1234
+('0d8fa44d-54fd-4cd0-ace9-2a7da57992de', 'sairam@example.com', 'Sairam','Vijayakumar', '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6'),-- Password: 1234
+('0d8fa77c-54fd-4cd0-ace9-2a7da57992de', 'noah@example.com', 'Noah','De Boni', '$2a$10$TM3PAYG3b.H98cbRrHqWa.BM7YyCqV92e/kUTBfj85AjayxGZU7d6') -- Password: 1234
+
  ON CONFLICT DO NOTHING;
 
 -- test
@@ -24,14 +27,20 @@ VALUES ('2ebf301e-6c61-4076-98e3-2a38b31daf86', 'DEFAULT'),
 ('efb7b108-4e38-11ee-be56-0242ac120002', 'EVENT_JOIN'),
 ('6b30a440-4e37-11ee-be56-0242ac120002', 'EVENT_READ'),
 ('6b30a896-4e37-11ee-be56-0242ac120002', 'EVENT_READ_PARTICIPANTS'),
-('5b30a896-4e37-11ee-be56-0242ac120002', 'EVENT_CREATE')
+('5b30a896-4e37-11ee-be56-0242ac120002', 'EVENT_CREATE'),
+('5b30a869-4e37-11ee-be56-0242ac120002', 'ADMIN_READ')
+
 ON CONFLICT DO NOTHING;
 
 --assign roles to users
 insert into users_role (users_id, role_id)
 values
        ('0d8fa44c-54fd-4cd0-ace9-2a7da57992de', 'c6aee32d-8c35-4481-8b3e-a876a39b0c02'),
-       ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'ab505c92-7280-49fd-a7de-258e618df074')
+       ('ba804cb9-fa14-42a5-afaf-be488742fc54', 'ab505c92-7280-49fd-a7de-258e618df074'),
+       ('0d8fa44d-54fd-4cd0-ace9-2a7da57992de', 'ab505c92-7280-49fd-a7de-258e618df074'),
+       ('0d8fa77c-54fd-4cd0-ace9-2a7da57992de', 'c6aee32d-8c35-4481-8b3e-a876a39b0c02')
+
+
  ON CONFLICT DO NOTHING;
 
 -- USER Role hat Authorities "EVENT_CREATE", "EVENT_MODIFY", "EVENT_DELETE", "EVENT_READ_PARTICIPANTS", "EVENT_READ" und EVENT_JOIN
@@ -69,13 +78,15 @@ VALUES
     --USER_MODIFY
     ('ab505c92-7280-49fd-a7de-258e618df074', '76d2cbf6-5845-470e-ad5f-2edb9e09a868'),
     --USER DELETE
-    ('ab505c92-7280-49fd-a7de-258e618df074', '21c942db-a275-43f8-bdd6-d048c21bf5ab')
+    ('ab505c92-7280-49fd-a7de-258e618df074', '21c942db-a275-43f8-bdd6-d048c21bf5ab'),
+    --ADMIN_READ
+    ('ab505c92-7280-49fd-a7de-258e618df074', '5b30a869-4e37-11ee-be56-0242ac120002')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO event (id ,event_name, date, location)
-VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','Summer Party', '2023-06-15', 'Beach Club'),
-       ('efb7b5ae-4e38-11ee-be56-0242ac120002' ,'Tech Conference', '2023-07-20', 'Convention Center'),
-       ('efb7b72a-4e38-11ee-be56-0242ac120002' ,'New Year Bash', '2023-12-31', 'Downtown Plaza');
+INSERT INTO event (id ,event_name, date, location, users_id)
+VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','Summer Party', '2023-06-15', 'Beach Club', '0d8fa44c-54fd-4cd0-ace9-2a7da57992de'),
+       ('efb7b5ae-4e38-11ee-be56-0242ac120002' ,'Tech Conference', '2023-07-20', 'Convention Center', '0d8fa44c-54fd-4cd0-ace9-2a7da57992de'),
+       ('efb7b72a-4e38-11ee-be56-0242ac120002' ,'New Year Bash', '2023-12-31', 'Downtown Plaza', '0d8fa44c-54fd-4cd0-ace9-2a7da57992de');
 
 INSERT  INTO event_users(event_id, users_id)
 VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','ba804cb9-fa14-42a5-afaf-be488742fc54');
