@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,22 +29,26 @@ public class EventService {
     @Autowired
     private UserRepository userRepository;
 
+    @Transactional
     public List<EventDTO> getAllEvents() {
         List<Event> events = eventRepository.findAll();
         return eventMapper.toDTOs(events);
     }
 
+    @Transactional
     public Optional<EventDTO> getEventById(UUID id) {
         Optional<Event> event = eventRepository.findById(id);
         return event.map(eventMapper::toDTO);
     }
 
+    @Transactional
     public EventDTO createEvent(EventDTO eventDTO) {
         Event event = eventMapper.fromDTO(eventDTO);
         event = eventRepository.save(event);
         return eventMapper.toDTO(event);
     }
 
+    @Transactional
     public EventDTO updateEvent(UUID id, EventDTO eventDTO) {
         if(eventRepository.existsById(id)) {
             Event event = eventMapper.fromDTO(eventDTO);
@@ -54,10 +59,12 @@ public class EventService {
         return null;
     }
 
+    @Transactional
     public void deleteEvent(UUID id) {
         eventRepository.deleteById(id);
     }
 
+    @Transactional
     public Page<User> getEventParticipants(UUID eventId, Pageable pageable) {
         List<User> usersParticipatingInEvent = userRepository.findByEventList_Id(eventId);
 
