@@ -3,6 +3,7 @@ package com.example.demo.domain.event;
 import com.example.demo.core.generic.AbstractEntity;
 import com.example.demo.domain.user.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,12 +24,15 @@ public class Event extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"))
     private List<User> guestList;
 
+    @NotNull
     @Column
     private String eventName;
 
+    @NotNull
     @Column
     private String date;
 
+    @NotNull
     @Column
     private String location;
 

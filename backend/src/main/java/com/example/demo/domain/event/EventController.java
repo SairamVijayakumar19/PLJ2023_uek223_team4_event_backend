@@ -6,18 +6,21 @@ import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.dto.UserDTO;
 import com.example.demo.domain.user.dto.UserMapper;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @RestController
+@Validated
 @RequestMapping("/api/events")
 @Log4j2
 public class EventController {
@@ -50,14 +53,14 @@ public class EventController {
     @Operation(summary = "Create a new event", description = "Creates and returns the newly created event.")
     @PreAuthorize("hasAuthority('EVENT_CREATE')")
     @PostMapping({"", "/"})
-    public ResponseEntity<EventDTO> createEvent(@RequestBody EventDTO eventDTO) {
+    public ResponseEntity<EventDTO> createEvent(@Valid @RequestBody EventDTO eventDTO) {
         return ResponseEntity.ok(eventService.createEvent(eventDTO));
     }
 
     @Operation(summary = "Update an existing event", description = "Updates and returns the modified event.")
     @PreAuthorize("hasAuthority('EVENT_MODIFY')")
     @PutMapping("/{id}")
-    public ResponseEntity<EventDTO> updateEvent(@PathVariable UUID id, @RequestBody EventDTO eventDTO) {
+    public ResponseEntity<EventDTO> updateEvent(@PathVariable UUID id,@Valid @RequestBody EventDTO eventDTO) {
         return ResponseEntity.ok(eventService.updateEvent(id, eventDTO));
     }
 
