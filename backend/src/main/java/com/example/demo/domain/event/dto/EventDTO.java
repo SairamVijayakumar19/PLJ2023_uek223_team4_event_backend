@@ -1,6 +1,7 @@
 package com.example.demo.domain.event.dto;
 
 import com.example.demo.core.generic.AbstractDTO;
+import com.example.demo.domain.user.User;
 import com.example.demo.domain.user.dto.UserDTO;
 import lombok.Data;
 
@@ -14,4 +15,5 @@ public class EventDTO extends AbstractDTO {
     private String eventName;
     private String date;
     private String location;
+    private User author;
 }

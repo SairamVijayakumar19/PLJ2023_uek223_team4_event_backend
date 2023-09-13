@@ -32,14 +32,19 @@ public class Event extends AbstractEntity {
     @Column
     private String location;
 
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User author;
+
     public Event() {
     }
 
-    public Event(UUID id , List<User> guestList, String eventName, String date, String location) {
+    public Event(UUID id , List<User> guestList, String eventName, String date, String location, User author) {
         super(id);
         this.guestList = guestList;
         this.eventName = eventName;
         this.date = date;
         this.location = location;
+        this.author = author;
     }
 }
