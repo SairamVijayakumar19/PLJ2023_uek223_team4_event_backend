@@ -26,7 +26,7 @@ Wenn der Docker und Backend laufen und sie eine Seite sehen, können Sie sich nu
 | E-Mail             | Password | Authorities                                        |
 | ------------------ | -------- |----------------------------------------------------|
 | user@example.com   | 1234     | Create/Modify/Delete/Participate/Read/join - Event |
-| admin@example.com  | 1234     | Hat alle Rechte ausser Participate Event           |
+| sairam@example.com  | 1234     | Hat Admin Rechte ausser Participate Event         | 
 
 
 
