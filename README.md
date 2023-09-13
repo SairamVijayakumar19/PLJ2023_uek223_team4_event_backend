@@ -48,6 +48,8 @@ Das Verhalten des Backends haben wir mit verschiedenen Postman Collections getes
 
 Links zu Files
 
+[JSON Postman Files](https://github.com/SairamVijayakumar19/PLJ2023_uek223_team4_event_backend/blob/main/Postman%20json%20files/)
+
 ### Schritte fürs Postman testing
 
 #### Schritt 1
