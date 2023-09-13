@@ -83,10 +83,10 @@ VALUES
     ('ab505c92-7280-49fd-a7de-258e618df074', '5b30a869-4e37-11ee-be56-0242ac120002')
 ON CONFLICT DO NOTHING;
 
-INSERT INTO event (id ,event_name, date, location)
-VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','Summer Party', '2023-06-15', 'Beach Club'),
-       ('efb7b5ae-4e38-11ee-be56-0242ac120002' ,'Tech Conference', '2023-07-20', 'Convention Center'),
-       ('efb7b72a-4e38-11ee-be56-0242ac120002' ,'New Year Bash', '2023-12-31', 'Downtown Plaza');
+INSERT INTO event (id ,event_name, date, location, users_id)
+VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','Summer Party', '2023-06-15', 'Beach Club', '0d8fa44c-54fd-4cd0-ace9-2a7da57992de'),
+       ('efb7b5ae-4e38-11ee-be56-0242ac120002' ,'Tech Conference', '2023-07-20', 'Convention Center', '0d8fa44c-54fd-4cd0-ace9-2a7da57992de'),
+       ('efb7b72a-4e38-11ee-be56-0242ac120002' ,'New Year Bash', '2023-12-31', 'Downtown Plaza', '0d8fa44c-54fd-4cd0-ace9-2a7da57992de');
 
 INSERT  INTO event_users(event_id, users_id)
 VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','ba804cb9-fa14-42a5-afaf-be488742fc54');
