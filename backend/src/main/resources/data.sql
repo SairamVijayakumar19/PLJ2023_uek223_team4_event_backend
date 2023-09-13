@@ -24,7 +24,9 @@ VALUES ('2ebf301e-6c61-4076-98e3-2a38b31daf86', 'DEFAULT'),
 ('efb7b108-4e38-11ee-be56-0242ac120002', 'EVENT_JOIN'),
 ('6b30a440-4e37-11ee-be56-0242ac120002', 'EVENT_READ'),
 ('6b30a896-4e37-11ee-be56-0242ac120002', 'EVENT_READ_PARTICIPANTS'),
-('5b30a896-4e37-11ee-be56-0242ac120002', 'EVENT_CREATE')
+('5b30a896-4e37-11ee-be56-0242ac120002', 'EVENT_CREATE'),
+('5b30a869-4e37-11ee-be56-0242ac120002', 'ADMIN_READ')
+
 ON CONFLICT DO NOTHING;
 
 --assign roles to users
@@ -69,7 +71,9 @@ VALUES
     --USER_MODIFY
     ('ab505c92-7280-49fd-a7de-258e618df074', '76d2cbf6-5845-470e-ad5f-2edb9e09a868'),
     --USER DELETE
-    ('ab505c92-7280-49fd-a7de-258e618df074', '21c942db-a275-43f8-bdd6-d048c21bf5ab')
+    ('ab505c92-7280-49fd-a7de-258e618df074', '21c942db-a275-43f8-bdd6-d048c21bf5ab'),
+    --ADMIN_READ
+    ('ab505c92-7280-49fd-a7de-258e618df074', '5b30a869-4e37-11ee-be56-0242ac120002')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO event (id ,event_name, date, location)
