@@ -37,3 +37,33 @@ Wenn der Docker und Backend laufen und sie eine Seite sehen, können Sie sich nu
 org.postgresql.util.PSQLException: ERROR: relation "role_authority" does not exist
 ```
 Simply restart the application. Hibernate sometimes does not initialize the tables fast enough an causes thios error. restarting the application fixes this.
+
+
+### Testing
+
+
+Das Verhalten des Backends haben wir mit verschiedenen Postman Collections getestet.
+
+#### Collection JSON Files
+
+Links zu Files
+
+### Schritte fürs Postman testing
+
+#### Schritt 1
+
+JSON Files herunterladen und per Drag und Drop Files hinzufügen.
+
+<img width="958" alt="image" src="https://github.com/SairamVijayakumar19/PLJ2023_uek223_team4_event_backend/assets/113603845/8c8caabd-bb59-4fe5-ad4b-4a631227aa83">
+
+#### Schritt 2
+
+Bei Environments ein neues Environment erstellen und eine neue Variable namens "token" erstellen.
+
+<img width="961" alt="image" src="https://github.com/SairamVijayakumar19/PLJ2023_uek223_team4_event_backend/assets/113603845/bff27b1f-283f-416a-b943-acd12f3d273d"> 
+ 
+
+Nun sind Sie bereit fürs testing in Postman, bedenken sie immer zuerst den login test durchzuführen.
+
+
+
