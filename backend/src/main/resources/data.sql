@@ -37,23 +37,39 @@ values
 -- USER Role hat Authorities "EVENT_CREATE", "EVENT_MODIFY", "EVENT_DELETE", "EVENT_READ_PARTICIPANTS", "EVENT_READ" und EVENT_JOIN
 INSERT INTO role_authority(role_id, authority_id)
 VALUES
+    --USER_MODIFY
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '76d2cbf6-5845-470e-ad5f-2edb9e09a868'),
+    --USER_DELETE
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '21c942db-a275-43f8-bdd6-d048c21bf5ab'),
+    --EVENT_POST
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '07e848fa-4d62-11ee-be56-0242ac120002'),
+    --EVENT_READ_PARTICIPANTS
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '6b30a896-4e37-11ee-be56-0242ac120002'),
+    --EVENT_READ
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '6b30a440-4e37-11ee-be56-0242ac120002'),
+    --EVENT_JOIN
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', 'efb7b108-4e38-11ee-be56-0242ac120002'),
+    --EVENT_CREATE
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '5b30a896-4e37-11ee-be56-0242ac120002'),
+    --EVENT_DELETE
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '07e85052-4d62-11ee-be56-0242ac120002'),
+    --EVENT_MODIFY
     ('c6aee32d-8c35-4481-8b3e-a876a39b0c02', '07e851ba-4d62-11ee-be56-0242ac120002')
  ON CONFLICT DO NOTHING;
 
 -- ADMIN hat "EVENT_READ",
 INSERT INTO role_authority(role_id, authority_id)
 VALUES
+    --EVENT_READ
     ('ab505c92-7280-49fd-a7de-258e618df074', '6b30a440-4e37-11ee-be56-0242ac120002'),
+    --EVENT_READ_PARTICIPANTS
     ('ab505c92-7280-49fd-a7de-258e618df074', '6b30a896-4e37-11ee-be56-0242ac120002'),
-    ('ab505c92-7280-49fd-a7de-258e618df074', '07e848fa-4d62-11ee-be56-0242ac120002')
+    --EVENT_POST
+    ('ab505c92-7280-49fd-a7de-258e618df074', '07e848fa-4d62-11ee-be56-0242ac120002'),
+    --USER_MODIFY
+    ('ab505c92-7280-49fd-a7de-258e618df074', '76d2cbf6-5845-470e-ad5f-2edb9e09a868'),
+    --USER DELETE
+    ('ab505c92-7280-49fd-a7de-258e618df074', '21c942db-a275-43f8-bdd6-d048c21bf5ab')
 ON CONFLICT DO NOTHING;
 
 INSERT INTO event (id ,event_name, date, location)
