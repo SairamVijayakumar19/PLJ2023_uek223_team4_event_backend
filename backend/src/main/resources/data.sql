@@ -89,4 +89,8 @@ VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','Summer Party', '2023-06-15', 'Be
        ('efb7b72a-4e38-11ee-be56-0242ac120002' ,'New Year Bash', '2023-12-31', 'Downtown Plaza', '0d8fa44c-54fd-4cd0-ace9-2a7da57992de');
 
 INSERT  INTO event_users(event_id, users_id)
-VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','ba804cb9-fa14-42a5-afaf-be488742fc54');
+VALUES ('efb7b3f6-4e38-11ee-be56-0242ac120002','ba804cb9-fa14-42a5-afaf-be488742fc54'),
+       ('efb7b5ae-4e38-11ee-be56-0242ac120002','ba804cb9-fa14-42a5-afaf-be488742fc54'),
+       ('efb7b72a-4e38-11ee-be56-0242ac120002','ba804cb9-fa14-42a5-afaf-be488742fc54'),
+       ('efb7b72a-4e38-11ee-be56-0242ac120002','0d8fa44d-54fd-4cd0-ace9-2a7da57992de')
+
