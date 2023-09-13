@@ -1,8 +1,10 @@
 package com.example.demo.domain.user;
 
 import com.example.demo.core.generic.AbstractEntity;
+import com.example.demo.domain.event.Event;
 import com.example.demo.domain.role.Role;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 import jakarta.persistence.Column;
@@ -42,13 +44,19 @@ public class User extends AbstractEntity {
              inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
   private Set<Role> roles = new HashSet<>();
 
-  public User(UUID id, String firstName, String lastName, String email, String password, Set<Role> roles) {
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "event_users", joinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id"),
+          inverseJoinColumns = @JoinColumn(name = "event_id", referencedColumnName = "id"))
+  private List<Event> eventList;
+
+  public User(UUID id, String firstName, String lastName, String email, String password, Set<Role> roles, List<Event> eventList) {
     super(id);
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
     this.roles = roles;
+    this.eventList = eventList;
   }
 
 }

@@ -3,6 +3,8 @@ package com.example.demo.domain.event;
 import com.example.demo.domain.event.dto.EventDTO;
 import com.example.demo.domain.event.dto.EventMapper;
 import com.example.demo.domain.user.User;
+import com.example.demo.domain.user.dto.UserDTO;
+import com.example.demo.domain.user.dto.UserMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class EventController {
 
     @Autowired
     private EventMapper eventMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Operation(summary = "Retrieve all events", description = "Returns a list of all available events.")
     @PreAuthorize("hasAuthority('EVENT_READ')")
@@ -67,7 +72,7 @@ public class EventController {
     @Operation(summary = "Get participants of an event", description = "Returns a paginated list of participants of the specified event.")
     @PreAuthorize("hasAuthority('EVENT_READ_PARTICIPANTS')")
     @GetMapping("/{id}/participants")
-    public ResponseEntity<Page<User>> getEventParticipants(@PathVariable UUID id, Pageable pageable) {
-        return ResponseEntity.ok(eventService.getEventParticipants(id, pageable));
+    public ResponseEntity<Page<UserDTO>> getEventParticipants(@PathVariable UUID id, Pageable pageable) {
+        return ResponseEntity.ok(eventService.getEventParticipants(id, pageable).map(u -> userMapper.toDTO(u)));
     }
 }

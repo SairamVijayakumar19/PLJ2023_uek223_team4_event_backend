@@ -3,6 +3,8 @@ package com.example.demo.domain.event;
 import com.example.demo.domain.event.dto.EventDTO;
 import com.example.demo.domain.event.dto.EventMapper;
 import com.example.demo.domain.user.User;
+import com.example.demo.domain.user.UserRepository;
+import com.example.demo.domain.user.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -22,6 +24,9 @@ public class EventService {
 
     @Autowired
     private EventMapper eventMapper;
+
+    @Autowired
+    private UserRepository userRepository;
 
     public List<EventDTO> getAllEvents() {
         List<Event> events = eventRepository.findAll();
@@ -54,16 +59,14 @@ public class EventService {
     }
 
     public Page<User> getEventParticipants(UUID eventId, Pageable pageable) {
-        Optional<Event> eventOptional = eventRepository.findById(eventId);
-        if (eventOptional.isPresent()) {
-            List<User> guestList = eventOptional.get().getGuestList();
-            int start = (int) pageable.getOffset();
-            int end = Math.min((start + pageable.getPageSize()), guestList.size());
-            List<User> subList = guestList.subList(start, end);
+        List<User> usersParticipatingInEvent = userRepository.findByEventList_Id(eventId);
 
-            return new PageImpl<>(subList, pageable, guestList.size());
-        }
-        return Page.empty();
+        int pageSize = Math.min(1, pageable.getPageSize());
+        int start = (int) pageable.getOffset();
+        int end = Math.min(start + pageSize, usersParticipatingInEvent.size());
+        List<User> subList = usersParticipatingInEvent.subList(start, end);
+
+        return new PageImpl<>(subList, pageable, usersParticipatingInEvent.size());
     }
 
 
