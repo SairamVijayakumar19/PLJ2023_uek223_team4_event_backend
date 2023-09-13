@@ -66,6 +66,8 @@ Bei Environments ein neues Environment erstellen und eine neue Variable namens "
  
 
 Nun sind Sie bereit fürs testing in Postman, bedenken sie immer zuerst den login test durchzuführen.
+Ebenfalls müssen sie oben Rechts das neue Environment auswählen. 
 
+<img width="960" alt="image" src="https://github.com/SairamVijayakumar19/PLJ2023_uek223_team4_event_backend/assets/113603845/424878ac-de35-4c2a-be82-0fff8c929432">
 
 
