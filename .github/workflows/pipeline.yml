@@ -16,6 +16,6 @@ jobs:
           username: ${{ secrets.USERNAME }}     
           password: ${{ secrets.PASSWORD }}     
           port: 22     
-          script: chmod +x run.sh && sairam/run.sh 
+          script: pwd && chmod +x run.sh && sairam/run.sh 
 
           
